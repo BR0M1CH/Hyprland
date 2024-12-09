@@ -1,0 +1,123 @@
+{
+  "position": "top",
+    "margin-top" : 0,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height" : 24,
+    "modules-left": [
+      "hyprland/workspaces",
+      "hyprland/language"
+    ],
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-right": [
+    "bluetooth",
+    "pulseaudio",
+    "cpu",
+    "battery",
+    "memory",
+    "network#normal",
+    "network#vpn",
+    "custom/wireguard-manager",
+    "temperature",
+    "clock",
+    ],
+    "hyprland/window": {
+      "format": "{}",
+      "max-length": 35,
+      "rewrite": {
+        "": "Hyprland"
+      },
+      "separate-outputs": true,
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "active": " ",
+      },
+      "persistent-workspaces": {
+	"*": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+      },
+    },
+    "bluetooth": {
+	"on-click": "blueman-manager",
+	"format-off": "ᛒ {status} ",
+	"format-on": "ᛒ {status} ",
+	"format-connected":"🎧{status} ",
+    },
+    "clock": {
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+      "format": "{}%",
+    },
+    "memory": {
+      "format": "{}% "
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": "{icon} {temperatureC}°C",
+      "format-icons": ["", "", ""]
+    },
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon}  {capacity}%",
+      "format-full": "{icon}  {capacity}%",
+      "format-charging": "  {capacity}%",
+      "format-plugged": "  {capacity}%",
+      "format-alt": "{time} {icon}",
+      "format-icons": ["", "", "", "", ""]
+    },
+    "network#normal": {
+      "format-ethernet": "{ipaddr}",
+      "tooltip-format": "mask: {cidr} ",
+      "format-linked": "{ifname} (No IP) ",
+    },
+    "network#vpn": {
+      "interface": "wg0",
+      "format-ethernet": "🔒 {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "🔊{volume}%",
+      "format-bluetooth-muted": " ",
+      "format-muted": " {format_source}",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+    },
+    "custom/wireguard-manager": {
+      "exec": "exec ~/.config/waybar/wireguard-manager/wireguard-manager.sh -s",
+      "format": "{icon}",
+      "format-icons": {
+        "connected": "<span color=\"#50fa7b\">VPN</span>",
+        "disconnected": "<span color=\"#ff5555\">VPN</span>",
+      },
+      "interval": "once",
+      "on-click": "~/.config/waybar/wireguard-manager/wireguard-manager.sh -t && pkill -SIGRTMIN+1 waybar",
+      "return-type": "json",
+      "signal": 1,
+    },
+}

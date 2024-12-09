@@ -1,0 +1,192 @@
+@import "macchiato.css";
+
+* {
+  font-family: "JetBrains Mono", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgba(0,0,0,0);
+  border-radius: 0px;
+}
+
+window#waybar {
+  background-color: rgba(0,0,0,0);
+  border-radius: 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+  background-color: @surface2;
+}
+
+#workspaces,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#clock,
+#pulseaudio,
+#network,
+#bluetooth,
+#custom,
+#custom-wireguard-manager {
+  background-color: rgba(97, 87, 130, 0.6);
+  border-radius: 8px;
+  padding: 0 6px;
+  margin: 0 8px;
+}
+
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#custom:hover,
+#custom-wireguard-manager:hover {
+  background-color: rgba(97, 87, 130, 0.8);
+}
+
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: @rosewater;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: @rosewater;
+  color: @base;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#mode {
+  background-color: #64727d;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#pulseaudio {
+  color: @maroon;
+}
+
+#network {
+  color: @yellow;
+}
+
+#temperature {
+  color: @sky;
+}
+
+#battery {
+  color: @green;
+}
+
+#bluetooth {
+  color: #8baaff;
+}
+
+#clock {
+  color: @flamingo;
+}
+
+#cpu {
+  color: @peach;
+}
+
+#memory {
+  color: @green;
+}
+
+#window {
+  color: @text;
+}
+
+.modules-right,
+.modules-left,
+.modules-center {
+  background-color: rgba(0,0,0,0);
+  border-radius: 15px;
+  margin-top: 8px;
+}
+
+.modules-center {
+  background-color: rgba(97, 87, 130, 0.8);
+}
+
+
+.modules-right {
+  padding: 0 10px;
+}
+
+.modules-left {
+  padding: 0 20px;
+}
+
+.modules-center {
+  padding: 0 10px;
+}
+#battery.charging,
+#battery.plugged {
+  color: @sapphire;
+}
+
+@keyframes blink {
+  to {
+    color: #000000;
+  }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#pulseaudio.muted {
+  color: @text;
+}
+
+#pulseaudio.bluetooth {
+  color: #8baaff
+}
+
+#pulseaudio.bluetooth-mutted {
+  color: #8baaff
+}
